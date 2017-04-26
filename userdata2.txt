@@ -7,9 +7,8 @@ secedit /export /cfg c:\secpol.cfg
 secedit /configure /db c:\windows\security\local.sdb /cfg c:\secpol.cfg /areas SECURITYPOLICY
 rm -force c:\secpol.cfg -confirm:$false
 $admin = [adsi]("WinNT://./administrator, user")
-$admin.psbase.invoke("SetPassword", "SDLDEMO")
+$admin.psbase.invoke("SetPassword", "")
 netsh advfirewall firewall set rule name="Windows Remote Management (HTTP-In)" profile=public protocol=tcp 
-netsh advfirewall firewall set rule name="Windows Remote Management (HTTPS-In)" profile=public protocol=tcp 
 localport=5985 remoteip=localsubnet new remoteip=any
 localport=5986 remoteip=localsubnet new remoteip=any
 Rename-Computer -NewName chefnode01 -Force
